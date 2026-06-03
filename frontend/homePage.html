@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="styles/home_page_style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <main class="container_principal">
+        <main class="conteudo_principal">
+            <header class="header">
+                <h1>Habit Tracker</h1>
+                <p id="data-atual">April 25th, 2026</p>
+                <a id="username_logout">
+                    <span id="username_text"></span> ∘ 
+                    <span id="button_logout">Logout</span>
+                </a>
+            </header>
+            <div class="faixa_opcoes">
+                <ol>
+                    <li><button class="btn_opcoes selected" id="opcoes-week" onclick="switchTab('week')">Week</button></li>
+                    <li><button class="btn_opcoes" id="opcoes-month" onclick="switchTab('month')">Month</button></li>
+                    <li><button class="btn_opcoes" id="opcoes-manage" onclick="switchTab('manage')">Manage</button></li>
+                </ol>
+                
+                <div class="acao">
+                    <!-- <button class="add_habit btn_acao">Clean All Data <i class="fa-solid fa-trash"></i></button> -->
+                </div>
+            </div>
+            <div class="informacoes_data" id="informacoes_data">
+                <div class="botoes">
+                    <button class="btn_circular" onclick="navigate(false)"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="btn_circular" onclick="navigate(true)"><i class="fa-solid fa-chevron-right"></i></button>
+                </div>
+                <p id="data-goal"></p>
+            </div>
+            <div class="barra_progresso_total" id="barra-progresso-total">
+                <div class="barra_progresso_andamento"  id="barra-progresso-andamento"></div>
+            </div>
+            <div>
+                <p id="completude-porcentagem-texto">22%</p>
+            </div>
+            <div class="calendario">
+                <div class="semanal" id="calendario-semanal">
+                    <table class="tabela_semanal" id="tabela-semanal">
+                        <!--
+                        <tr>
+                            <th class="col-habito"></th>
+                            <th>Mon</th>
+                            <th>Tue</th>
+                            <th>Wed</th>
+                            <th>Thu</th>
+                            <th>Fri</th>
+                            <th>Sat</th>
+                            <th>Sun</th>
+                            <th class="col-completude"></th>
+                        </tr>
+                        <tr style="--habit-color: rgb(85, 0, 128);">
+                            <td  class="col-habito">Read</td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td class="col-completude">4/7</td>
+                        </tr>
+                        <tr style="--habit-color: rgb(255, 170, 0);">
+                            <td  class="col-habito">Gym</td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td class="col-completude">4/7</td>
+                        </tr>
+                        <tr style="--habit-color: rgb(0, 162, 255);">
+                            <td  class="col-habito">Meditate</td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td class="col-completude">3/7</td>
+                        </tr>
+                        <tr style="--habit-color: rgb(23, 144, 2);">
+                            <td  class="col-habito">Write</td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td class="col-completude">2/7</td>
+                        </tr>
+                        <tr style="--habit-color: rgb(195, 13, 152);">
+                            <td  class="col-habito">Exercise</td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal done"></div></td>
+                            <td><div class="status_dia_semanal"></div></td>
+                            <td class="col-completude">5/7</td>
+                        </tr>
+                        -->
+                    </table>
+                </div>
+                <div class="mensal" id="calendario-mensal" style="display: none;">
+                    <table class="tabela_mensal" id="tabela-mensal">
+                        <!--
+                        <tr>
+                            <th class="col-habito"></th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                            <th>13</th>
+                            <th>14</th>
+                            <th>15</th>
+                            <th>16</th>
+                            <th>17</th>
+                            <th>18</th>
+                            <th>19</th>
+                            <th>20</th>
+                            <th>21</th>
+                            <th>22</th>
+                            <th>23</th>
+                            <th>24</th>
+                            <th>25</th>
+                            <th>26</th>
+                            <th>27</th>
+                            <th>28</th>
+                            <th>29</th>
+                            <th>30</th>
+                            <th>31</th>
+                        </tr>
+                        <tr style="--habit-color: rgb(85, 0, 128);">
+                            <td  class="col-habito"><div class="habito_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                        </tr>
+                        <tr style="--habit-color: rgb(255, 170, 0);">
+                            <td  class="col-habito"><div class="habito_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                        </tr>
+                        <tr style="--habit-color: rgb(0, 162, 255);">
+                            <td  class="col-habito"><div class="habito_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                        </tr>
+                        <tr style="--habit-color: rgb(23, 144, 2);">
+                            <td  class="col-habito"><div class="habito_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                        </tr>
+                        <tr style="--habit-color: rgb(195, 13, 152);">
+                            <td  class="col-habito"><div class="habito_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal done"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                            <td><div class="status_dia_mensal"></div></td>
+                        </tr>
+                        -->
+                    </table>
+                </div>
+                <div class="manage" id="manage-page" style="display: none;">
+                    <ul class="habits" id="lista-habits-page">
+                        <li>
+                            <div class="habit_card_new">
+                                <button class="add_habit"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </li>
+                        <!--
+                        <li>
+                            <div class="habit_card" style="--habit-color: rgb(195, 13, 152);">
+                                <input class="habit_name" type="text" value="Read">
+                                <input class="habit_color" type="color" value="rgb(195, 13, 152)">
+                                <p>Start: 15/03/2026</p>
+                                <p>17/45, 22%</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="habit_card" style="--habit-color: rgb(255, 170, 0)">
+                                <input class="habit_name" type="text" value="Gym">
+                                <input class="habit_color" type="color" value="rgb(255, 170, 0)">
+                                <p>Start: 15/03/2026</p>
+                                <p>17/45, 22%</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="habit_card" style="--habit-color: rgb(0, 162, 255);">
+                                <input class="habit_name" type="text" value="Meditate">
+                                <input class="habit_color" type="color" value="rgb(0, 162, 255)">
+                                <p>Start: 15/03/2026</p>
+                                <p>17/45, 22%</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="habit_card" style="--habit-color: rgb(23, 144, 2);">
+                                <input class="habit_name" type="text" value="Write">
+                                <input class="habit_color" type="color" value="rgb(23, 144, 2)">
+                                <p>Start: 15/03/2026</p>
+                                <p>17/45, 22%</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="habit_card" style="--habit-color: rgb(195, 13, 152);">
+                                <input class="habit_name" type="text" value="Exercise">
+                                <input class="habit_color" type="color" value="rgb(195, 13, 152)">
+                                <p>Start: 15/03/2026</p>
+                                <p>17/45, 22%</p>
+                            </div>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+        </main>
+        <aside class="gerenciar_atividades">
+            <h2>Manage Habits</h2>
+            <div class="lista_atividades">
+                <ul id="lista-atividades-aside">
+                    <!--
+                    <li>
+                        <div class="atividade done" style="--habit-color: rgb(85, 0, 128);">
+                            <div class="atividade_info">
+                                <h3>Read</h3>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </div>
+                            <div class="atividade_feito">
+                                <p><i class="fa-solid fa-check"></i> Done</p>
+                                <a href="#"><i>undo</i></a>
+                            </div>
+                            <div class="atividade_acao" style="display: none;">
+                                <button class="btn_acao_atividade">Done</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="atividade done" style="--habit-color: rgb(255, 170, 0);">
+                            <div class="atividade_info">
+                                <h3>Gym</h3>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </div>
+                            <div class="atividade_feito">
+                                <p><i class="fa-solid fa-check"></i> Done</p>
+                                <a href="#"><i>undo</i></a>
+                            </div>
+                            <div class="atividade_acao" style="display: none;">
+                                <button class="btn_acao_atividade">Done</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="atividade" style="--habit-color: rgb(0, 162, 255);">
+                            <div class="atividade_info">
+                                <h3>Meditate</h3>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </div>
+                            <div class="atividade_feito" style="display: none;">
+                                <p><i class="fa-solid fa-check"></i> Done</p>
+                                <a href="#"><i>undo</i></a>
+                            </div>
+                            <div class="atividade_acao">
+                                <button class="btn_acao_atividade">Done</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="atividade" style="--habit-color: rgb(23, 144, 2);">
+                            <div class="atividade_info">
+                                <h3>Write</h3>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </div>
+                            <div class="atividade_feito" style="display: none;">
+                                <p><i class="fa-solid fa-check"></i> Done</p>
+                                <a href="#"><i>undo</i></a>
+                            </div>
+                            <div class="atividade_acao">
+                                <button class="btn_acao_atividade">Done</button>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="atividade" style="--habit-color: rgb(195, 13, 152);">
+                            <div class="atividade_info">
+                                <h3>Exercise</h3>
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </div>
+                            <div class="atividade_feito" style="display: none;">
+                                <p><i class="fa-solid fa-check"></i> Done</p>
+                                <a href="#"><i>undo</i></a>
+                            </div>
+                            <div class="atividade_acao">
+                                <button class="btn_acao_atividade">Done</button>
+                            </div>
+                        </div>
+                    </li>-->
+                </ul>
+            </div>
+        </aside>
+    </main>
+    <script src="js/home_page.js"></script>
+</body>
+</html>

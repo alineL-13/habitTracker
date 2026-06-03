@@ -1,0 +1,435 @@
+:root {
+    --text-dark: #333;
+    --text-light: #828282;
+    --azul-escuro: #004aad;
+    --cinza-claro: #eee;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+i {
+  color: inherit; /* Herda a cor nos icons */
+}
+
+.container_principal {
+    min-height: 100vh;
+    width: 100vw;
+    display: flex;
+    padding: 1rem 2rem 0 2rem;
+    padding-bottom: 20px;
+}
+
+.conteudo_principal {
+    flex: 2;
+}
+
+.gerenciar_atividades {
+    flex: 1;
+}
+
+/* HEADER */
+.conteudo_principal .header h1 {
+    padding-bottom: 10px;
+}
+
+.conteudo_principal .header p {
+    font-size: 1.2rem;
+}
+
+.conteudo_principal .header a {
+    font-size: small;
+}
+
+.conteudo_principal .header #button_logout {
+    cursor: pointer;
+}
+
+/* FAIXA DE OPÇÕES */
+.faixa_opcoes {
+    display: flex;
+    gap: 3rem;
+    flex: 1;
+}
+
+.faixa_opcoes .acao {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.faixa_opcoes ol {
+    background-color: var(--cinza-claro);
+    border-radius: 50px;
+    display: flex;
+    list-style-type: none;
+    flex: 1;
+    margin: 2rem 0rem;
+    gap: 5px;
+    padding: 2px 2px;
+}
+
+.faixa_opcoes ol li {
+    flex: 1;
+}
+
+.faixa_opcoes ol li button {
+    padding: 5px 0px;
+    width: 100%;
+    border-radius: 50px;
+    border-color: transparent;
+    cursor: pointer;
+}
+
+.faixa_opcoes ol li button.selected {
+    background-color: white;
+}
+
+/* INFORMAÇÕES DA DATA */
+.informacoes_data {
+    display: flex;
+    align-items: center;
+}
+
+.informacoes_data p {
+    font-size: 1.4rem;
+    margin-left: 10px;
+}
+
+/* BARRA DE PROGRESSO */
+.barra_progresso_total {
+    background-color: var(--cinza-claro);
+    height: 10px;
+    margin-top: 15px;
+    border-radius: 50px;
+}
+
+.barra_progresso_andamento {
+    background-color: var(--azul-escuro);
+    height: 100%;
+    width: 35%;
+    border-radius: 50px;
+}
+
+#completude-porcentagem-texto {
+    color: var(--text-light);
+    font-size: small;
+    margin-top: 5px;
+    width: 100%;
+    text-align: right;
+}
+
+/* CALENDARIO */
+.calendario {
+    margin-top: 30px;
+}
+
+/* CALENDARIO SEMANAL */
+.calendario .semanal .tabela_semanal {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    table-layout: fixed;
+    font-size: 1.2rem;
+}
+
+.calendario .semanal .tabela_semanal th {
+    color: var(--text-light);
+    font-weight: normal;
+}
+
+.calendario .semanal .tabela_semanal .col-habito {
+    width: 20%;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+.calendario .semanal .tabela_semanal .col-completude {
+    width: 10%;
+    color: var(--text-light);
+}
+
+.calendario .semanal .tabela_semanal td {
+    height: 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+.calendario .semanal .tabela_semanal td .status_dia_semanal {
+    height: 100%;
+    width: 25px;
+    border-radius: 5px;
+    background-color: var(--cinza-claro);
+}
+
+.calendario .semanal .tabela_semanal td .status_dia_semanal.done {
+    background-color: var(--habit-color);
+}
+
+/* CALENDARIO MENSAL */
+.calendario .mensal .tabela_mensal {
+    width: 100%;
+    border-collapse: separate;
+    table-layout: fixed;
+    table-layout: fixed;
+    border-spacing: 0 15px;
+}
+
+.calendario .mensal .tabela_mensal th {
+    color: var(--text-light);
+    font-weight: normal;
+}
+
+.calendario .mensal .tabela_mensal td {
+    height: 20px;
+    justify-items: center;
+    align-items: center;
+}
+
+.calendario .mensal .tabela_mensal td .status_dia_mensal, .habito_mensal {
+    height: 100%;
+    width: 20px;
+    border-radius: 5px;
+    background-color: var(--cinza-claro);
+}
+
+.calendario .mensal .tabela_mensal td .habito_mensal {
+    height: 100%;
+    width: 20px;
+    border-radius: 100%;
+    background-color: var(--habit-color);
+}
+
+.calendario .mensal .tabela_mensal td .status_dia_mensal.done {
+    background-color: var(--habit-color);
+}
+
+/* MAIN GERENCIAR ATIVIDADES */
+.calendario .manage {
+    width: 100%;
+}
+
+.calendario .manage ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+
+.calendario .manage .habit_card_new {
+    height: 220px;
+    border-radius: 10px;
+    width: 240px;
+    border: var(--cinza-claro) solid 1px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calendario .manage .habit_card_new .add_habit {
+    background-color: transparent;
+    border: var(--cinza-claro) solid 1px;
+    height: 70px;
+    width: 70px;
+    border-radius: 10px;
+    color: var(--text-dark);
+    cursor: pointer;
+    font-size: 1.2rem;
+    background-image: linear-gradient(45deg, #f7f7f7 25%, #eeeeee 25%, #eeeeee 50%, #f7f7f7 50%, #f7f7f7 75%, #eeeeee 75%, #eeeeee 100%);
+    background-size: 5.66px 5.66px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+}
+
+.calendario .manage .habit_card {
+    padding: 15px 0;
+    height: 220px;
+    border-radius: 10px;
+    width: 240px;
+    border: var(--cinza-claro) solid 1px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.calendario .manage .habit_card .habit_name {
+    width: 200px;
+    height: 30px;
+    font-size: 1.1rem;
+    font-family: Poppins, sans-serif;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 2px solid var(--habit-color);
+    color: var(--text-dark);
+}
+
+.calendario .manage .habit_card .habit_color {
+    width: 50px;
+    height: 50px;
+    border: none;
+    padding: 0;
+    background: transparent;
+}
+
+.calendario .manage .habit_card .habit_color::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.calendario .manage .habit_card .habit_color::-webkit-color-swatch {
+    border: none;
+    border-radius: 8px;
+}
+
+.calendario .manage .habit_card .habit_delete {
+    position: absolute;
+    right: 12px;
+    bottom: 12px;
+
+    cursor: pointer;
+    color: #888;
+    font-size: 18px;
+
+    transition: color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.calendario .manage .habit_card .habit_delete:hover {
+    color: #e53935;
+    transform: scale(1.15);
+}
+
+.calendario .manage .habit_card p {
+    color: var(--text-light);
+}
+
+/* ASIDE GERENCIAR ATIVIDADES */
+.gerenciar_atividades {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.gerenciar_atividades .lista_atividades {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.gerenciar_atividades .lista_atividades ul {
+    list-style-type: none;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gerenciar_atividades .lista_atividades li .atividade {
+    width: 100%;
+    height: 85px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 10px;
+}
+
+.gerenciar_atividades .lista_atividades li .atividade.done {
+    background-color: var(--habit-color);
+    color: white;
+    border-radius: 10px;
+}
+
+.gerenciar_atividades .lista_atividades li .atividade:not(.done) {
+    border-left: 8px solid var(--habit-color);
+}
+
+.gerenciar_atividades .lista_atividades li .atividade .atividade_info {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.gerenciar_atividades .lista_atividades li .atividade .atividade_info i {
+    cursor: pointer;
+}
+
+.gerenciar_atividades .lista_atividades li .atividade .atividade_acao {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
+}
+
+.gerenciar_atividades .lista_atividades li .atividade .atividade_acao .btn_acao_atividade {
+    background-color: transparent;
+    border: var(--cinza-claro) solid 1px;
+    height: 30px;
+    width: 80%;
+    border-radius: 50px;
+    color: var(--azul-escuro);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.gerenciar_atividades .lista_atividades li .atividade .atividade_feito {
+    display: flex;
+    height: 50%;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+.gerenciar_atividades .lista_atividades li .atividade .atividade_feito button {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* UTILITARIOS */
+
+.btn_acao {
+    background-color: transparent;
+    border: var(--cinza-claro) solid 1px;
+    padding: 10px 40px;
+    border-radius: 50px;
+    color: var(--azul-escuro);
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn_circular {
+    background-color: transparent;
+    border: var(--cinza-claro) solid 1px;
+    border-radius: 100%;
+    padding: 10px;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Tracker</title>
+    <link rel="stylesheet" href="styles/login_page_style.css">
+    <link href="https://googleapis.com" rel="stylesheet">
+</head>
+<body>
+    <div class="main_container">
+        <div class="div_title">
+            <h1>Habit Tracker</h1>
+            <p>Make your goals come true by tracking!</p>
+        </div>
+        <form action="" method="post" id="login_form">
+            <div class="form_inputs">
+                <input type="text" name="username" id="input_username" placeholder="username">
+                <input type="password" name="password" id="input_password" placeholder="password">
+                <input type="password" name="confirm_password" id="input_confirm_password" placeholder="confirm password">
+            </div>
+            <div class="form_actions">
+                <p id="warning_text"></p>
+                <button id="button_submit"></button>
+                <a id="toggle_login_logon"></a>
+            </div>
+        </form>
+    </div>
+    <script src="js/login_page.js"></script>
+</body>
+</html>
