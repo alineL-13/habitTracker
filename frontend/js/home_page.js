@@ -1,3 +1,11 @@
+const API_URL =
+    window.location.hostname
+    === "localhost"
+
+        ? "http://localhost:3000"
+
+        : "https://habittracker-6e80.onrender.com";
+
 const DOM = {
   weekCalendar: document.getElementById("calendario-semanal"),
   monthCalendar: document.getElementById("calendario-mensal"),
@@ -28,8 +36,6 @@ var AppState = {
 var Habits = [];
 var HabitEntries = [];
 
-const API_BASE_URL = "http://localhost:3000";
-
 function getToken() {
   return localStorage.getItem("token");
 }
@@ -45,7 +51,7 @@ function getAuthHeaders(contentType = false) {
 }
 
 async function fetchJson(endpoint, options = {}) {
-  const response = await fetch(`${API_BASE_URL}${endpoint}`, options);
+  const response = await fetch(`${API_URL}${endpoint}`, options);
   const text = await response.text();
   const data = text ? JSON.parse(text) : {};
 
@@ -79,7 +85,7 @@ async function checkAuth() {
     return;
   }
   try {
-    const response = await fetch("http://localhost:3000/auth/checkLoggedUser", {
+    const response = await fetch(`${API_URL}/auth/checkLoggedUser`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

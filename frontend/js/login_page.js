@@ -1,3 +1,11 @@
+const API_URL =
+    window.location.hostname
+    === "localhost"
+
+        ? "http://localhost:3000"
+
+        : "https://habittracker-6e80.onrender.com";
+
 var AppState = {
     loginMode: true
 };
@@ -34,7 +42,7 @@ async function checkLoggedUser(){
     if(!token) return;
     try {
         const response = await fetch(
-            "http://localhost:3000/auth/checkLoggedUser",
+            `${API_URL}/auth/checkLoggedUser`,
             {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -64,7 +72,7 @@ async function login() {
         password: DOM.input_password.value
     };
     try {
-        const response = await fetch("http://localhost:3000/auth/login", {
+        const response = await fetch(`${API_URL}/auth/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -103,7 +111,7 @@ async function signup() {
     };
     try {
         const response = await fetch(
-            "http://localhost:3000/auth/signup",
+            `${API_URL}/auth/signup`,
             {
                 method: "POST",
                 headers: {
